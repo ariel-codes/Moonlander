@@ -3,17 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package moonbase.beta;
+package com.game.exceptions;
 
 /**
  *
  * @author ariel
  */
-public class Simulation implements Runnable{
-
-    @Override
-    public void run() {
-        //throw new UnsupportedOperationException("To do :(");
-    }
+public class GameException extends Exception{
     
+    GameException(){
+        throw new UnsupportedOperationException("To Do :(");
+    }
 }
