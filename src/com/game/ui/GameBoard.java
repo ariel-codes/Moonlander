@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.game.moonbase;
+package com.game.ui;
 
 /**
  *
  * @author ariel
  */
-public class Board extends javax.swing.JPanel {
+public class GameBoard extends javax.swing.JPanel {
 
     /**
      * Creates new form Board
      */
-    public Board() {
+    public GameBoard() {
         initComponents();
     }
 

@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.game.moonbase;
+package com.game.logic;
 
+import com.game.ui.GameBoard;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-@SuppressWarnings("serial")
 public class GameRender extends JFrame {
 
     public GameRender() {
@@ -23,7 +23,7 @@ public class GameRender extends JFrame {
     }
 
     private void initComponents() {
-        add(new Board());
+        add(new GameBoard());
         setSize(1366, 768);
         setTitle("MoonBase Beta");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
