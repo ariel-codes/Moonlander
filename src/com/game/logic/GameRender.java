@@ -23,7 +23,7 @@ public class GameRender extends BasicGame {
 
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
-		g.drawString("Howdy!", 10, 10);
+		g.drawString("Howdy!", 100, 100);
 	}
 
 	public static void main(String[] args) {
