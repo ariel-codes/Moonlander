@@ -1,32 +1,40 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.game.logic;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
 
-import com.game.ui.GameBoard;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
+public class GameRender extends BasicGame {
 
-public class GameRender extends JFrame {
+	public GameRender(String gamename) {
+		super(gamename);
+	}
 
-    public GameRender() {
-        initComponents();
-    }
+	@Override
+	public void init(GameContainer gc) throws SlickException {
+	}
 
-    public static void main(String[] args) {
-        // Important http://docs.oracle.com/javase/tutorial/uiswing/concurrency/initial.html
-        SwingUtilities.invokeLater(() -> {
-            new GameRender().setVisible(true);
-        });
-    }
+	@Override
+	public void update(GameContainer gc, int i) throws SlickException {
+	}
 
-    private void initComponents() {
-        add(new GameBoard());
-        setSize(1366, 768);
-        setTitle("MoonBase Beta");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-    }
+	@Override
+	public void render(GameContainer gc, Graphics g) throws SlickException {
+		g.drawString("Howdy!", 10, 10);
+	}
+
+	public static void main(String[] args) {
+		try {
+			AppGameContainer appgc;
+			appgc = new AppGameContainer(new GameRender("Simple Slick Game"));
+			appgc.setDisplayMode(640, 480, false);
+			appgc.start();
+		} catch (SlickException ex) {
+			Logger.getLogger(GameRender.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		
+	}
 }
