@@ -5,6 +5,7 @@ Remake do jogo [_Moonbase_](https://en.wikipedia.org/wiki/Moonbase_(video_game))
 ### Bibliotecas:
 - [ligdx](https://libgdx.badlogicgames.com/)
 
+<<<<<<< HEAD
 ### Ferramentas:
 - [Tiled](http://www.mapeditor.org/)
 - [Overlap2D](http://overlap2d.com/)
