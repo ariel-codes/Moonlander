@@ -32,9 +32,9 @@ public class Lander extends Entity {
         // Create a fixture definition to apply our shape to
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = box;
-        fixtureDef.density = 0.5f;
-        fixtureDef.friction = 0.4f;
-        fixtureDef.restitution = 0.6f; // Make it bounce a little bit
+        fixtureDef.density = 2f;
+        fixtureDef.friction = 1f;
+        fixtureDef.restitution = 0f; // Make it bounce a little bit
 
         // Create our fixture and attach it to the body
         this.fixture = body.createFixture(fixtureDef);
