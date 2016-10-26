@@ -15,7 +15,7 @@ public abstract class Entity {
     public Sprite sprite;
 
     public void setPos(Vector2 pos){
-        sprite.setPosition(pos.x/25f, pos.y/25f);
+        sprite.setPosition(pos.x, pos.y);
     }
 
     public void setRot(float degrees){

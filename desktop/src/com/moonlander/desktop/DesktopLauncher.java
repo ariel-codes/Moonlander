@@ -10,6 +10,8 @@ public class DesktopLauncher {
 		config.title = "Moonbase Lander";
 		config.width = 1200;
 		config.height = 720;
+		config.resizable = false;
+        config.vSyncEnabled = true;
 		new LwjglApplication(new Moonlander(), config);
 	}
 }

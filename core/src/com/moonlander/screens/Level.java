@@ -22,17 +22,14 @@ public class Level extends GameScreen{
         super(game);
         assets = new Loader();
         assets.loadAll();
-        scenario = new World(new Vector2(0, 1.6f), true);
-        manager = new WorldManager(scenario);
-        new Lander(scenario, new Vector2(0,0), new Sprite(assets.urss)).sprite.setPosition(Gdx.graphics.getWidth() / 2,
-                Gdx.graphics.getHeight() / 2);
-        System.out.print("W");
+        scenario = new World(new Vector2(0, -1.6f), true);
+        manager = new WorldManager(scenario, new Lander(scenario, new Vector2(0,0), new Sprite(assets.urss)));
+        System.out.println("Level Loaded!");
     }
 
     @Override
     public void render(float delta) {
-        manager.render();
-
+        manager.render(delta);
     }
 
     @Override
