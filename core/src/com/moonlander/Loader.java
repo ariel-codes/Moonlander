@@ -10,7 +10,11 @@ import com.badlogic.gdx.graphics.Texture;
 public class Loader {
 
     static public Texture usa = new Texture(Gdx.files.internal("usa.png")),
-            urss = new Texture(Gdx.files.internal("urss.png"));
+                          urss = new Texture(Gdx.files.internal("urss.png"));
+    
     static public Sound audio_RCS = Gdx.audio.newSound(Gdx.files.internal("audio/RCS.wav")),
-            audio_Thruster = Gdx.audio.newSound(Gdx.files.internal("audio/Thrusters.wav"));
+                        audio_Thruster = Gdx.audio.newSound(Gdx.files.internal("audio/Thrusters.wav"));
+    
+    static public Texture flag_usa = new Texture(Gdx.files.internal("minimap/flag_usa.png")),
+                          flag_urss = new Texture(Gdx.files.internal("minimap/flag_urss.png"));
 }

@@ -21,6 +21,7 @@ public class Lander extends Entity {
     private boolean downMove;
 
     private Sound RCS, thruster;
+    public Sprite mini;
 
     public enum type {
         USA, URSS;
@@ -35,12 +36,16 @@ public class Lander extends Entity {
         switch (t) {
             case USA:
                 this.sprite = new Sprite(Loader.usa);
+                this.mini = new Sprite(Loader.flag_usa);
                 break;
             case URSS:
                 this.sprite = new Sprite(Loader.urss);
+                this.mini = new Sprite(Loader.flag_urss);
         }
         this.sprite.setSize(sprite.getWidth() * WorldManager.SCALE, sprite.getHeight() * WorldManager.SCALE);
         this.sprite.setOriginCenter();
+        this.mini.setSize(mini.getWidth() * WorldManager.SCALE, mini.getHeight() * WorldManager.SCALE);
+        this.mini.setOriginCenter();
 
         BodyDef bodyDef = new BodyDef();
         // We set our body to dynamic, for something like ground which doesn't move we would set it to StaticBody
