@@ -5,13 +5,14 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.moonlander.Moonlander;
 
 public class DesktopLauncher {
-	public static void main (String[] arg) {
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.title = "Moonbase Lander";
-		config.width = 1200;
-		config.height = 720;
-		config.resizable = false;
+
+    public static void main(String[] arg) {
+        LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+        config.title = "Moonbase Lander";
+        config.width = 800;
+        config.height = 600;
+        config.resizable = false;
         config.vSyncEnabled = true;
-		new LwjglApplication(new Moonlander(), config);
-	}
+        new LwjglApplication(new Moonlander(), config);
+    }
 }

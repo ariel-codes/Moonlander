@@ -9,13 +9,8 @@ import com.badlogic.gdx.graphics.Texture;
  */
 public class Loader {
 
-    public Texture usa, urss;
-    public Sound audio_RCS, audio_Thruster;
-
-    public void loadAll(){
-        usa = new Texture(Gdx.files.internal("usa.png"));
-        urss = new Texture(Gdx.files.internal("urss.png"));
-        audio_RCS = Gdx.audio.newSound(Gdx.files.internal("audio/RCS.wav"));
-        audio_Thruster = Gdx.audio.newSound(Gdx.files.internal("audio/Thrusters.wav"));
-    }
+    static public Texture usa = new Texture(Gdx.files.internal("usa.png")),
+            urss = new Texture(Gdx.files.internal("urss.png"));
+    static public Sound audio_RCS = Gdx.audio.newSound(Gdx.files.internal("audio/RCS.wav")),
+            audio_Thruster = Gdx.audio.newSound(Gdx.files.internal("audio/Thrusters.wav"));
 }

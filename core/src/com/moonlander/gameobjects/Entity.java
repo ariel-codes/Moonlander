@@ -14,11 +14,9 @@ public abstract class Entity {
     public Fixture fixture;
     public Sprite sprite;
 
-    public void setPos(Vector2 pos){
-        sprite.setPosition(pos.x, pos.y);
-    }
+    public abstract void setPos(Vector2 pos);
 
-    public void setRot(float degrees){
-        sprite.setRotation(degrees);
-    }
+    public abstract void setRot(float degrees);
+    
+    public abstract void updateMotion();
 }
