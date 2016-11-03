@@ -44,7 +44,7 @@ public class Lander extends Entity {
         }
         this.sprite.setSize(sprite.getWidth() * WorldManager.SCALE, sprite.getHeight() * WorldManager.SCALE);
         this.sprite.setOriginCenter();
-        this.mini.setSize(mini.getWidth() * WorldManager.SCALE, mini.getHeight() * WorldManager.SCALE);
+        this.mini.setSize(sprite.getWidth(), sprite.getHeight());
         this.mini.setOriginCenter();
 
         BodyDef bodyDef = new BodyDef();
@@ -132,29 +132,28 @@ public class Lander extends Entity {
             upMove = false;
         }
         if(b)
-            thruster.loop(1.5f);
+            RCS.loop(0.1f, 0.2f, 1);
         else
-            thruster.stop();
+            RCS.stop();
         downMove = b;
     }
 
     @Override
     public void updateMotion() {
-        System.out.println(body.getAngle());
         if (leftMove) {
-            angularVel += 2.5f;
+            angularVel += 3f * Gdx.graphics.getDeltaTime();
 
         }
         if (rightMove) {
-            angularVel -= 2.5f;
+            angularVel -= 3f * Gdx.graphics.getDeltaTime();
         }
         if (upMove) {
             linearVel.y += 15 * cos(body.getAngle()) * Gdx.graphics.getDeltaTime();
             linearVel.x -= 15 * sin(body.getAngle()) * Gdx.graphics.getDeltaTime();
         }
         if (downMove) {
-            linearVel.y -= 3 * cos(body.getAngle()) * Gdx.graphics.getDeltaTime();
-            linearVel.x += 3 * sin(body.getAngle()) * Gdx.graphics.getDeltaTime();
+            linearVel.y -= 3f * cos(body.getAngle()) * Gdx.graphics.getDeltaTime();
+            linearVel.x += 3f * sin(body.getAngle()) * Gdx.graphics.getDeltaTime();
         }
         body.applyTorque(angularVel * Gdx.graphics.getDeltaTime(), true);
         body.applyLinearImpulse(linearVel, body.getPosition(), upMove);

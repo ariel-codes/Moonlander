@@ -31,11 +31,11 @@ public class WorldManager implements InputProcessor {
     StretchViewport viewport;
     private final OrthographicCamera cameraMiniMap;
 
-    public static final int MARKER_SIZE = 2;
-    public static final int MINIMAP_LEFT = 0;
-    public static final int MINIMAP_RIGHT = 200;
-    public static final int MINIMAP_TOP = 480;
-    public static final int MINIMAP_BOTTOM = 280;
+    public static final float MARKER_SIZE = 2;
+    public static final float MINIMAP_LEFT = -WIDTH/2;
+    public static final float MINIMAP_RIGHT = -200;
+    public static final float MINIMAP_TOP = 200;
+    public static final float MINIMAP_BOTTOM = -200;
 
     double currentTime;
     double t = 0.0;
@@ -59,7 +59,7 @@ public class WorldManager implements InputProcessor {
         cam.position.set(player.body.getPosition(), 5);
         debugRenderer = new Box2DDebugRenderer();
         cameraMiniMap = new OrthographicCamera(WIDTH, HEIGHT);
-        cameraMiniMap.zoom = SCALE;
+//        cameraMiniMap.zoom = 8;
         batchMiniMap = new SpriteBatch();
     }
 
@@ -102,7 +102,7 @@ public class WorldManager implements InputProcessor {
         cameraMiniMap.update();
         batchMiniMap.setProjectionMatrix(cameraMiniMap.combined);
         batchMiniMap.begin();
-            //TODO
+        batchMiniMap.draw(player.mini, -WIDTH/2, (HEIGHT/2)-100, 200, 100);
         batchMiniMap.end();
     }
 
