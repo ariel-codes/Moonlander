@@ -159,4 +159,9 @@ public class Lander extends Entity {
         body.applyLinearImpulse(linearVel, body.getPosition(), upMove);
     }
 
+    public void collide(Contact contact, Fixture a){
+        float speed = contact.getTangentSpeed();
+        System.out.println("Collided at " + speed + "m/s");
+    }
+
 }
