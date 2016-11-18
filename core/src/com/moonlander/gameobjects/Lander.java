@@ -165,6 +165,7 @@ public class Lander extends Entity {
         if(body.getAngularVelocity()>0.01f){
             System.out.println("POUSO SUAVE MEU PATRÃO");
         }else System.out.println("SADBOYZ1969, VC FOI O PRIMEIRO HOMEM A MORRER NA LUA");
+        System.exit(42);
     }
 
 }
