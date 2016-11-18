@@ -17,7 +17,7 @@ public class Level extends GameScreen{
     public Level(Game game) {
         super(game);
         scenario = new World(new Vector2(0, -1.6f*0.03125f), true);
-        manager = new WorldManager(scenario, new Lander(scenario, new Vector2(0,0), Lander.type.URSS));
+        manager = new WorldManager(scenario, new Lander(scenario, new Vector2(0, 235), Lander.type.URSS));
         
         System.out.println("Level Loaded!");
     }

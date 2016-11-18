@@ -22,6 +22,7 @@ public class Lander extends Entity {
 
     private Sound RCS, thruster;
     public Sprite mini;
+    private float volume = 2;
 
     public enum type {
         USA, URSS;
@@ -75,7 +76,7 @@ public class Lander extends Entity {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = box;
         fixtureDef.density = 2f;
-        fixtureDef.friction = 0f;
+        fixtureDef.friction = 1f;
         fixtureDef.restitution = 0f;
 
         // Create our fixture and attach it to the body
@@ -99,7 +100,7 @@ public class Lander extends Entity {
             rightMove = false;
         }
         if(b)
-            RCS.loop(0.1f, 0.2f, 1);
+            RCS.loop(0.2f*volume, 0.2f, 1);
         else
             RCS.stop();
         leftMove = b;
@@ -110,7 +111,7 @@ public class Lander extends Entity {
             leftMove = false;
         }
         if(b)
-            RCS.loop(0.1f, 0.2f, 1);
+            RCS.loop(0.2f*volume, 0.2f, 1);
         else
             RCS.stop();
         rightMove = b;
@@ -121,7 +122,7 @@ public class Lander extends Entity {
             downMove = false;
         }
         if(b)
-            thruster.loop(1.5f);
+            thruster.loop(1.5f*volume);
         else
             thruster.stop();
         upMove = b;
@@ -132,7 +133,7 @@ public class Lander extends Entity {
             upMove = false;
         }
         if(b)
-            RCS.loop(0.1f, 0.2f, 1);
+            RCS.loop(0.5f*volume, 0.2f, 1);
         else
             RCS.stop();
         downMove = b;
@@ -141,27 +142,29 @@ public class Lander extends Entity {
     @Override
     public void updateMotion() {
         if (leftMove) {
-            angularVel += 3f * Gdx.graphics.getDeltaTime();
+            angularVel += 5f * Gdx.graphics.getDeltaTime();
 
         }
         if (rightMove) {
-            angularVel -= 3f * Gdx.graphics.getDeltaTime();
+            angularVel -= 5f * Gdx.graphics.getDeltaTime();
         }
         if (upMove) {
             linearVel.y += 15 * cos(body.getAngle()) * Gdx.graphics.getDeltaTime();
             linearVel.x -= 15 * sin(body.getAngle()) * Gdx.graphics.getDeltaTime();
         }
         if (downMove) {
-            linearVel.y -= 3f * cos(body.getAngle()) * Gdx.graphics.getDeltaTime();
-            linearVel.x += 3f * sin(body.getAngle()) * Gdx.graphics.getDeltaTime();
+            linearVel.y -= 5f * cos(body.getAngle()) * Gdx.graphics.getDeltaTime();
+            linearVel.x += 5f * sin(body.getAngle()) * Gdx.graphics.getDeltaTime();
         }
         body.applyTorque(angularVel * Gdx.graphics.getDeltaTime(), true);
         body.applyLinearImpulse(linearVel, body.getPosition(), upMove);
+//        System.out.println(linearVel);
     }
 
     public void collide(Contact contact, Fixture a){
-        float speed = contact.getTangentSpeed();
-        System.out.println("Collided at " + speed + "m/s");
+        if(body.getAngularVelocity()>0.01f){
+            System.out.println("POUSO SUAVE MEU PATRÃO");
+        }else System.out.println("SADBOYZ1969, VC FOI O PRIMEIRO HOMEM A MORRER NA LUA");
     }
 
 }

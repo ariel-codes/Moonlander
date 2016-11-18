@@ -16,12 +16,14 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.moonlander.gameobjects.Entity;
 import com.moonlander.gameobjects.Lander;
+import com.moonlander.gameobjects.Terrain;
 import com.sun.glass.ui.SystemClipboard;
 
 public class WorldManager implements InputProcessor, ContactListener{
 
     Lander player;
     SpriteBatch batch;
+    Terrain ground;
 
     static public float SCALE = 0.03125f;
     static final float WIDTH = 800;
@@ -59,7 +61,7 @@ public class WorldManager implements InputProcessor, ContactListener{
         BodyDef groundBodyDef = new BodyDef();
         groundBodyDef.position.set(new Vector2(0, 0));
         groundBodyDef.type = BodyDef.BodyType.StaticBody;
-        player.setPos(new Vector2(0, worldY/2));
+
         bounds = world.createBody(groundBodyDef);
         PolygonShape groundBox = new PolygonShape();
         groundBox.setAsBox(worldX/2, worldY/2);
@@ -82,6 +84,8 @@ public class WorldManager implements InputProcessor, ContactListener{
 //        cameraMiniMap.zoom = 8;
         batchMiniMap = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
+
+        this.ground = new Terrain(worldX, 25, new Vector2(0, -worldY/2), world);
     }
 
     public void render(float delta) {
@@ -119,30 +123,32 @@ public class WorldManager implements InputProcessor, ContactListener{
     }
 
     void renderMinimap() {
-        cameraMiniMap.update();
-        batchMiniMap.setProjectionMatrix(cameraMiniMap.combined);
-        batchMiniMap.begin();
-        batchMiniMap.draw(player.mini, -WIDTH/2, (HEIGHT/2)-100, 200, 100);
-        batchMiniMap.end();
+        Vector2 ppos = player.body.getPosition();
+        ppos.x = (200f/worldX) * ppos.x - 300;
+        ppos.y = (400f/worldY) * ppos.y;
         shapeRenderer.setProjectionMatrix(cameraMiniMap.combined);
         shapeRenderer.begin(ShapeType.Filled);
         shapeRenderer.setColor(0, 0, 0, 0.5f);
         shapeRenderer.rect(MINIMAP_LEFT, -HEIGHT/2+100, 200, 400);
         shapeRenderer.setColor(Color.FOREST);
-        Vector2 ppos = player.body.getPosition();
-        ppos.x = (200f/worldX) * ppos.x - 300;
-        ppos.y = (400f/worldY) * ppos.y;
         shapeRenderer.circle(ppos.x, ppos.y, 3);
         shapeRenderer.end();
         shapeRenderer.begin(ShapeType.Line);
+        shapeRenderer.setColor(Color.FOREST);
         for(float i = 10; i<180; i+=20)
             shapeRenderer.circle(ppos.x, ppos.y, i);
         shapeRenderer.end();
         shapeRenderer.begin(ShapeType.Filled);
         shapeRenderer.setColor(Color.WHITE);
-        shapeRenderer.rect(MINIMAP_LEFT+200, -HEIGHT/2+100, 180, 400);
+        shapeRenderer.rect(MINIMAP_LEFT+200, -HEIGHT/2+100, 180, 500);
         shapeRenderer.rect(MINIMAP_LEFT, -HEIGHT/2, 380, 100);
         shapeRenderer.end();
+
+        cameraMiniMap.update();
+        batchMiniMap.setProjectionMatrix(cameraMiniMap.combined);
+        batchMiniMap.begin();
+        batchMiniMap.draw(player.mini, -WIDTH/2, (HEIGHT/2)-100, 200, 100);
+        batchMiniMap.end();
     }
 
     public void dispose() {
@@ -164,6 +170,7 @@ public class WorldManager implements InputProcessor, ContactListener{
                 break;
             case Keys.DOWN:
                 player.setDownMove(true);
+                break;
             case Keys.P:
                 System.out.println("Posição: " + player.body.getPosition().toString());
         }
