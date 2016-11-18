@@ -162,9 +162,11 @@ public class Lander extends Entity {
     }
 
     public void collide(Contact contact, Fixture a){
-        if(body.getAngularVelocity()>0.01f){
+        if(body.getAngularVelocity()<0.001f && (body.getLinearVelocity().x < 0.001f || body.getLinearVelocity().x > -0.001f) && body.getLinearVelocity().y > -0.01){
             System.out.println("POUSO SUAVE MEU PATRÃO");
         }else System.out.println("SADBOYZ1969, VC FOI O PRIMEIRO HOMEM A MORRER NA LUA");
+
+        System.out.println(body.getLinearVelocity());
         System.exit(42);
     }
 
